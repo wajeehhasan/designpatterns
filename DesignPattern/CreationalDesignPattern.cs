@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SingletonDemo
+namespace CreationalDesignPattern
 {
     #region Singleton
     public sealed class Singleton
@@ -77,7 +77,7 @@ namespace SingletonDemo
     #endregion FactoryDesign
 }
 
-namespace SingletonDemo
+namespace CreationalDesignPattern
 {
     class Program
     {
