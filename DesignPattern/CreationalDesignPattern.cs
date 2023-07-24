@@ -108,7 +108,7 @@ namespace CreationalDesignPattern
             return parentObj;
         }
     }
-    public class ConcreateClassA : BuilderClass
+    public class ConcreteClassA : BuilderClass
     {
         public override void SetPropName()
         {
@@ -119,7 +119,7 @@ namespace CreationalDesignPattern
             parentObj.PropType = "Type A";
         }
     }
-    public class ConcreateClassB : BuilderClass
+    public class ConcreteClassB : BuilderClass
     {
         public override void SetPropName()
         {
@@ -142,6 +142,31 @@ namespace CreationalDesignPattern
     }
     #endregion BuilderDesign
 
+    #region FluentDesign
+    public class FluentDesign
+    {
+ 
+        public int id { get; set; }
+        public string PropA { get; set; }
+        public string PropB { get; set; }
+
+        public FluentDesign SetId(int id)
+        {
+            this.id = id;
+            return this;
+        }
+        public FluentDesign SetPropA(string prop)
+        {
+            this.PropA = prop;
+            return this;
+        }
+        public FluentDesign SetPropB(string prop)
+        {
+            this.PropB = prop;
+            return this;
+        }
+    }
+    #endregion FluentDesign
 }
 
 namespace CreationalDesignPattern
@@ -172,14 +197,23 @@ namespace CreationalDesignPattern
             #endregion Factory
             #region BuilderDesign
             Directorclass directorclass = new Directorclass();
-            ConcreateClassA concreateClassA = new ConcreateClassA();
-            ConcreateClassB concreateClassB = new ConcreateClassB();
-            ParentClass parentClassA = directorclass.MakeParentObject(concreateClassA);
-            ParentClass parentClassB = directorclass.MakeParentObject(concreateClassB);
+            ConcreteClassA concreteClassA = new ConcreteClassA();
+            ConcreteClassB concreteClassB = new ConcreteClassB();
+            ParentClass parentClassA = directorclass.MakeParentObject(concreteClassA);
+            ParentClass parentClassB = directorclass.MakeParentObject(concreteClassB);
             parentClassA.PropertyDisplay();
             Console.WriteLine("--------------------------");
             parentClassB.PropertyDisplay();
             #endregion BuilderDesign
+
+            #region FluentDesign
+            FluentDesign FluentObj = new FluentDesign();
+            FluentObj.SetId(1).SetPropA("Wajeeh").SetPropB("Hasan");
+
+            Console.WriteLine(FluentObj.PropA + " " + FluentObj.PropB);
+
+
+            #endregion FluentDesign
         }
     }
 }
