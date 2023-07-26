@@ -169,7 +169,51 @@ namespace CreationalDesignPattern
     #endregion FluentDesign
 
     #region FactoryMethodDesign
+    public interface BaseInterface
+    {
+        string propA();
+    }
 
+    public class ConcreteA : BaseInterface
+    {
+        public string propA()
+        {
+            return "Property A";
+        }
+    }
+    public class ConcreteB : BaseInterface
+    {
+        public string propA()
+        {
+            return "Property B";
+        }
+    }
+    public abstract class BaseIntFactory
+    {
+        protected abstract BaseInterface MakeInterfaceObj();
+
+        public BaseInterface CreateInterface()
+        {
+            BaseInterface interfaceObj = this.MakeInterfaceObj();
+            return interfaceObj;
+        }
+    }
+    public class ConcreteAFactory : BaseIntFactory
+    {
+        protected override BaseInterface MakeInterfaceObj()
+        {
+            BaseInterface product = new ConcreteA();
+            return product;
+        }
+    }
+    public class ConcreteBFactory : BaseIntFactory
+    {
+        protected override BaseInterface MakeInterfaceObj()
+        {
+            BaseInterface product = new ConcreteB();
+            return product;
+        }
+    }
     #endregion FactoryMethodDesign
 }
 
@@ -217,6 +261,11 @@ namespace CreationalDesignPattern
 
 
             #endregion FluentDesign
+
+            #region FactoryMethodDesign
+            BaseInterface interfaceObj = new ConcreteBFactory().CreateInterface();
+            Console.WriteLine(interfaceObj.propA());
+            #endregion FactoryMethodDesign
         }
     }
 }
