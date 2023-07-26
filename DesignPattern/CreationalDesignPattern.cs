@@ -167,6 +167,10 @@ namespace CreationalDesignPattern
         }
     }
     #endregion FluentDesign
+
+    #region FactoryMethodDesign
+
+    #endregion FactoryMethodDesign
 }
 
 namespace CreationalDesignPattern
@@ -205,7 +209,6 @@ namespace CreationalDesignPattern
             Console.WriteLine("--------------------------");
             parentClassB.PropertyDisplay();
             #endregion BuilderDesign
-
             #region FluentDesign
             FluentDesign FluentObj = new FluentDesign();
             FluentObj.SetId(1).SetPropA("Wajeeh").SetPropB("Hasan");
